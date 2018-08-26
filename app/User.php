@@ -1,11 +1,11 @@
 <?php
 
 namespace finance;
-
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
@@ -26,4 +26,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function getJWTCustomClaims() {
+        return [];
+    }
+
+    public function getJWTIdentifier() {
+        return $this->getKey();
+    }
+
 }

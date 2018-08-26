@@ -19,6 +19,7 @@ class Kernel extends HttpKernel
         \finance\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \finance\Http\Middleware\TrustProxies::class,
+        
     ];
 
     /**
@@ -59,5 +60,7 @@ class Kernel extends HttpKernel
         'guest' => \finance\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
+        'jwt.referesh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
     ];
 }
