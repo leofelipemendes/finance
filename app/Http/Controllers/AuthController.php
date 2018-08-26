@@ -33,19 +33,7 @@ class AuthController extends Controller
                 'data'=>$user
                 ],200);   
     }
-    
-    public function teste(Request $request) {
-       $validator = Validator::make($request->all(),
-                [
-            'name'     => 'required|string|unique:users',
-            'email'    => 'required|email|unique:users',
-            'password' => 'required|email|min:6|max:10',
-        ]);
-        if($validator->fails()){
-            return response()->json($validator->errors());
-        }
-    }
-    
+           
     public function login(Request $request) {
         $credentials = $request->only('email','password');
         if(!$token = \JWTAuth::attempt($credentials)){
